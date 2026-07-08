@@ -346,43 +346,42 @@ def check_notification():
     print_header("5. 通知推送测试")
     
     from src.notification import NotificationService
-    from src.config import get_config
-    
-    config = get_config()
+
     service = NotificationService()
-    
+
     print_section("配置检查")
-    if service.is_available():
-        print(f"  ✓ 企业微信 Webhook 已配置")
-        webhook_preview = config.wechat_webhook_url[:50] + "..." if len(config.wechat_webhook_url) > 50 else config.wechat_webhook_url
-        print(f"    URL: {webhook_preview}")
-    else:
-        print(f"  ✗ 企业微信 Webhook 未配置")
+    channels = service.get_available_channels()
+    if not channels:
+        print(f"  ✗ 未配置任何通知渠道（Discord / 企业微信 / 飞书 / Telegram 等）")
         return False
+
+    print(f"  ✓ 已配置 {len(channels)} 个通知渠道：")
+    for ch in channels:
+        print(f"    - {getattr(ch, 'name', ch)}")
     
     print_section("发送测试消息")
-    
+
     test_message = f"""## 🧪 系统测试消息
 
 这是一条来自 **A股自选股智能分析系统** 的测试消息。
 
 - 测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-- 测试目的: 验证企业微信 Webhook 配置
+- 测试目的: 验证通知配置
 
 如果您收到此消息，说明通知功能配置正确 ✓"""
-    
-    print(f"  正在发送...")
-    
+
+    print(f"  正在发送（向所有已配置渠道）...")
+
     try:
-        success = service.send_to_wechat(test_message)
-        
+        success = service.send(test_message)
+
         if success:
-            print(f"  ✓ 消息发送成功，请检查企业微信")
+            print(f"  ✓ 消息发送成功，请检查对应渠道")
         else:
-            print(f"  ✗ 消息发送失败")
-        
+            print(f"  ✗ 消息发送失败（所有渠道均未成功）")
+
         return success
-        
+
     except Exception as e:
         print(f"  ✗ 发送异常: {e}")
         return False

@@ -8,6 +8,7 @@
 """
 
 from .astrbot_sender import AstrbotSender
+from .bark_sender import BarkSender, resolve_bark_push_endpoint, resolve_bark_target
 from .custom_webhook_sender import CustomWebhookSender
 from .discord_sender import DiscordSender
 from .email_sender import EmailSender

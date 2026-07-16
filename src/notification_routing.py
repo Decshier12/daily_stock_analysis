@@ -19,6 +19,7 @@ ROUTABLE_NOTIFICATION_CHANNELS: Tuple[str, ...] = (
     "pushover",
     "ntfy",
     "gotify",
+    "bark",
     "pushplus",
     "serverchan3",
     "custom",

@@ -181,6 +181,14 @@ CHANNEL_SPECS: Tuple[NotificationChannelSpec, ...] = (
         advanced_keys=("ASTRBOT_TOKEN", "WEBHOOK_VERIFY_SSL"),
     ),
     NotificationChannelSpec(
+        channel=NotificationChannel.BARK.value,
+        display_name=ChannelDetector.get_channel_name(NotificationChannel.BARK),
+        kind="configured",
+        minimal_keys=("BARK_URL", "BARK_DEVICE_KEY"),
+        advanced_keys=("BARK_SOUND", "BARK_LEVEL", "BARK_GROUP", "WEBHOOK_VERIFY_SSL"),
+        note="可自建 Bark server，内网可用，无需外网。",
+    ),
+    NotificationChannelSpec(
         channel=NotificationChannel.UNKNOWN.value,
         display_name=ChannelDetector.get_channel_name(NotificationChannel.UNKNOWN),
         kind="fallback",

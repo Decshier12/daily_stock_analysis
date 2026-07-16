@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - [改进] 通知推送与完整 Markdown/微信报告不再重复附加“AI 决策信号”摘要，DecisionSignal 的存储、告警和 Web AI 建议页保持不变。
 - [改进] TickFlow 新增基于申万一级行业池的行业涨跌排行 fallback，并将基本面/市场结构单能力默认超时由 3 秒调整为 8 秒，降低正常慢响应被提前降级的概率。
 - [文档] 补充 macOS 未签名、未公证 DMG 被 Gatekeeper 拦截时的架构选择、安全排查与官方安装包临时放行步骤。
+- [新功能] 新增 Bark 推送渠道（BARK_URL + BARK_DEVICE_KEY），支持自建 bark-server，可在无外网的内网环境推送 iOS 通知；可选 BARK_SOUND/BARK_LEVEL/BARK_GROUP 自定义；长内容（如整篇报告）超过 BARK_MAX_BODY_BYTES（默认 4000，规避官方 api.day.app 单条约 5KB 的 nginx 上限）时自动拆分为多条“标题 (i/n)”推送。
 <!-- 新条目格式：- [类型] 描述（类型取值：新功能/改进/修复/文档/测试/chore）-->
 <!-- 每条独立一行追加到本段末尾，无需分类标题，合并时冲突最小 -->
 

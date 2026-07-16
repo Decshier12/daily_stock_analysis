@@ -138,6 +138,13 @@ CHANNEL_PROFILES: Dict[str, ChannelProfile] = {
         default_mode="full_report",
         supports_link=True,
     ),
+    "bark": ChannelProfile(
+        channel="bark",
+        markdown="plain_text",
+        default_mode="plain_fallback",
+        supports_link=True,
+        notes="Self-hostable iOS push; body is plain text on the app.",
+    ),
     "pushplus": ChannelProfile(
         channel="pushplus",
         markdown="markdown",

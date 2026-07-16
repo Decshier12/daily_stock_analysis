@@ -911,7 +911,14 @@ class Config:
     # Gotify 配置（server base URL；sender 会拼接 /message）
     gotify_url: Optional[str] = None
     gotify_token: Optional[str] = None
-    
+
+    # Bark 配置（server base URL；自建后内网可用，无需外网。device key 单独配置）
+    bark_url: Optional[str] = None  # Bark server base，例如 https://api.day.app 或 http://192.168.1.100:8080
+    bark_device_key: Optional[str] = None  # Bark 设备 Key（App 内获取）
+    bark_sound: Optional[str] = None  # 可选，通知声音，如 alarm
+    bark_level: Optional[str] = None  # 可选，active/timeSensitive/critical
+    bark_group: Optional[str] = None  # 可选，分组名
+
     # 自定义 Webhook（支持多个，逗号分隔）
     # 适用于：钉钉、Discord、Slack、自建服务等任意支持 POST JSON 的 Webhook
     custom_webhook_urls: List[str] = field(default_factory=list)
@@ -1846,6 +1853,11 @@ class Config:
             ntfy_token=os.getenv('NTFY_TOKEN'),
             gotify_url=os.getenv('GOTIFY_URL'),
             gotify_token=os.getenv('GOTIFY_TOKEN'),
+            bark_url=os.getenv('BARK_URL'),
+            bark_device_key=os.getenv('BARK_DEVICE_KEY'),
+            bark_sound=os.getenv('BARK_SOUND'),
+            bark_level=os.getenv('BARK_LEVEL'),
+            bark_group=os.getenv('BARK_GROUP'),
             pushplus_token=os.getenv('PUSHPLUS_TOKEN'),
             pushplus_topic=os.getenv('PUSHPLUS_TOPIC'),
             serverchan3_sendkey=os.getenv('SERVERCHAN3_SENDKEY'),
@@ -3125,6 +3137,7 @@ class Config:
                 and (self.gotify_token or "").strip()
                 and _has_gotify_base_url(self.gotify_url)
             )
+            or (self.bark_url and (self.bark_device_key or "").strip())
             or self.pushplus_token
             or self.serverchan3_sendkey
             or self.custom_webhook_urls
@@ -3180,6 +3193,7 @@ class Config:
             ("DISCORD_WEBHOOK_URL", self.discord_webhook_url),
             ("SLACK_WEBHOOK_URL", self.slack_webhook_url),
             ("ASTRBOT_URL", self.astrbot_url),
+            ("BARK_URL", self.bark_url),
         ):
             _warn_if_webhook_url_invalid(field, value)
 
@@ -3209,6 +3223,17 @@ class Config:
                 severity="warning",
                 message="已配置 GOTIFY_URL，但缺少 GOTIFY_TOKEN，Gotify 渠道不会启用",
                 field="GOTIFY_TOKEN",
+            ))
+
+        if (
+            self.bark_url
+            and (self.bark_url or "").strip()
+            and not (self.bark_device_key or "").strip()
+        ):
+            issues.append(ConfigIssue(
+                severity="warning",
+                message="已配置 BARK_URL，但缺少 BARK_DEVICE_KEY，Bark 渠道不会启用",
+                field="BARK_DEVICE_KEY",
             ))
 
         if self.notification_quiet_hours:

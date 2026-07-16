@@ -61,6 +61,7 @@ from src.utils.data_processing import (
 )
 from src.notification_sender import (
     AstrbotSender,
+    BarkSender,
     CustomWebhookSender,
     DingtalkSender,
     DiscordSender,
@@ -75,6 +76,8 @@ from src.notification_sender import (
     TelegramSender,
     WechatSender,
     WECHAT_IMAGE_MAX_BYTES,
+    resolve_bark_push_endpoint,
+    resolve_bark_target,
     resolve_gotify_message_endpoint,
     resolve_ntfy_endpoint,
 )
@@ -115,6 +118,7 @@ class NotificationChannel(Enum):
     PUSHOVER = "pushover"  # Pushover（手机/桌面推送）
     NTFY = "ntfy"          # ntfy
     GOTIFY = "gotify"      # Gotify
+    BARK = "bark"          # Bark（可自建，内网可用）
     PUSHPLUS = "pushplus"  # PushPlus（国内推送服务）
     SERVERCHAN3 = "serverchan3"  # Server酱3（手机APP推送服务）
     CUSTOM = "custom"      # 自定义 Webhook
@@ -166,6 +170,7 @@ class ChannelDetector:
             NotificationChannel.PUSHOVER: "Pushover",
             NotificationChannel.NTFY: "ntfy",
             NotificationChannel.GOTIFY: "Gotify",
+            NotificationChannel.BARK: "Bark",
             NotificationChannel.PUSHPLUS: "PushPlus",
             NotificationChannel.SERVERCHAN3: "Server酱3",
             NotificationChannel.CUSTOM: "自定义Webhook",
@@ -179,6 +184,7 @@ class ChannelDetector:
 
 class NotificationService(
     AstrbotSender,
+    BarkSender,
     CustomWebhookSender,
     DingtalkSender,
     DiscordSender,
@@ -237,6 +243,7 @@ class NotificationService(
 
         # 初始化各渠道
         AstrbotSender.__init__(self, config)
+        BarkSender.__init__(self, config)
         CustomWebhookSender.__init__(self, config)
         DiscordSender.__init__(self, config)
         EmailSender.__init__(self, config)
@@ -429,6 +436,13 @@ class NotificationService(
         gotify_endpoint = resolve_gotify_message_endpoint(getattr(config, "gotify_url", None))
         if gotify_endpoint and (getattr(config, "gotify_token", None) or "").strip():
             channels.append(NotificationChannel.GOTIFY)
+
+        bark_endpoint, bark_device_key = resolve_bark_target(
+            getattr(config, "bark_url", None),
+            getattr(config, "bark_device_key", None),
+        )
+        if bark_endpoint and bark_device_key:
+            channels.append(NotificationChannel.BARK)
 
         if getattr(config, "pushplus_token", None):
             channels.append(NotificationChannel.PUSHPLUS)
@@ -2447,6 +2461,8 @@ class NotificationService(
             return self.send_to_ntfy(content)
         if channel == NotificationChannel.GOTIFY:
             return self.send_to_gotify(content)
+        if channel == NotificationChannel.BARK:
+            return self.send_to_bark(content)
         if channel == NotificationChannel.PUSHPLUS:
             return self.send_to_pushplus(content)
         if channel == NotificationChannel.SERVERCHAN3:

@@ -3364,7 +3364,7 @@ class StockAnalysisPipeline:
                 channels_needing_image = {
                     ch for ch in channels
                     if ch.value in self.notifier._markdown_to_image_channels
-                    and ch not in {NotificationChannel.NTFY, NotificationChannel.GOTIFY}
+                    and ch not in {NotificationChannel.NTFY, NotificationChannel.GOTIFY, NotificationChannel.BARK}
                 }
                 non_wechat_channels_needing_image = {
                     ch for ch in channels_needing_image if ch != NotificationChannel.WECHAT

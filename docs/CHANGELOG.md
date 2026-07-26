@@ -15,10 +15,66 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - [文档] 补充 macOS 未签名、未公证 DMG 被 Gatekeeper 拦截时的架构选择、安全排查与官方安装包临时放行步骤。
 - [新功能] 新增 Bark 推送渠道（BARK_URL + BARK_DEVICE_KEY），支持自建 bark-server，可在无外网的内网环境推送 iOS 通知；可选 BARK_SOUND/BARK_LEVEL/BARK_GROUP 自定义；长内容（如整篇报告）超过 BARK_MAX_BODY_BYTES（默认 4000，规避官方 api.day.app 单条约 5KB 的 nginx 上限）时自动拆分为多条“标题 (i/n)”推送。
 - [新功能] Web AI 建议页支持确认保存基于历史报告快照重算的决策风格信号，以 created/existing/refreshed 区分新建、原样复用和既有记录续期或维度补齐，复用 profile-aware 去重与失效语义，将历史信号的创建时间、有效期和相反信号失效顺序锚定来源报告时间，并提供可审计 guardrail 提示与阻断。
+- [修复] macOS unsigned 打包显式禁用 Electron 签名与 Hardened Runtime，在冻结后端首次执行前及 electron-builder `afterPack` 阶段清理残缺签名，并对原始应用和 DMG 挂载产物执行签名审计，避免再次发布带损坏签名的桌面包；该缓解不替代 Apple Developer 签名与公证（refs #2075）。
+- [修复] WebUI 分开展示发布版本、代码版本与构建时间，并通过构建输入摘要识别 `rsync -a` 保留时间戳造成的旧静态资源复用（fixes #2093）。
+- [chore] 暂停 PR Review 的自动触发，仅保留 `workflow_dispatch` 手动入口，避免辅助评审重复运行及评论权限失败产生误导性红灯；正式 CI 检查保持不变。
+- [新功能] Multi-Agent specialist 运行在分析历史保存成功后，按独立 skill 持久化版本化、低敏且幂等的有效 opinion 样本，为后续后验评估提供真实数据；本阶段不计算 outcome、不统计表现、不调整权重。
+- [新功能] AI 建议页在既有后验统计中增加决策风格历史表现，按每个分组独立的 30 个已完成样本门槛展示命中、区间涨跌、无法评估和最大不利波动，并保持旧统计接口兼容。
+- [新功能] Multi-Agent 报告按八态用户 action 追踪 Pipeline 最终调整，排除非法 Agent 意见；仅在 canonical action 可唯一解析时生成 explanation 与 DecisionSignal，并以同一个 `final_action` 统一最终动作契约。
+- [新功能] 新增 `--portfolio futu`，只读导入 Futu OpenD 真实账户的沪深 A 股、港股、美股 LONG 正股持仓作为分析列表。
+- [新功能] 多策略综合新增受控 deliberation v0、可注入 mediator/self-review v1-v2、只读 revision projection v3 与 multi-round v4；所有增强层相对上一层 baseline 只能保持或继续 softened，不覆盖权威最终信号。
+- [新功能] `specialist` 模式最多选择 4 个策略专家，并通过 `AGENT_SKILL_CONCURRENCY` 控制 1–4 个 worker 并发；worker 继承主管线冻结的 target date 等 `ContextVar` 状态，失败 skill 进入权威 Diagnostics 计数且不阻断其它策略或最终决策。
 <!-- 新条目格式：- [类型] 描述（类型取值：新功能/改进/修复/文档/测试/chore）-->
 <!-- 每条独立一行追加到本段末尾，无需分类标题，合并时冲突最小 -->
+- [修复] #2026 外股代码映射到中文显示名时英文新闻相关性判定漏判：新增同源 STOCK_ENGLISH_NAME_MAP 单一真源、canonicalize_foreign_stock_code 规范化入口与 _foreign_english_query_terms 别名解析，使 AAPL/00700/BABA 等 ticker 即使 stock_name 为中文也能在查询构建、相关性打分与多维度情报路径上复用 canonical 英文名，并补齐 .US/.HK suffix / HK 前缀全形式的归类与回归用例；同时在 _score_news_relevance 对 alias 展开 term 做去重，避免 legal alias 展开短名与显式 short alias 重复计分。
+- [新功能] Tushare 数据源支持通过 `TUSHARE_HTTP_URL` 环境变量自定义接入地址，便于网络无法直达 `api.tushare.pro` 时切换自建网关或第三方兼容镜像；留空保持官方默认地址不变（fixes #1985）
+- [文档] `.env.example` 与 `.github/workflows/00-daily-analysis.yml` 同步映射 `TUSHARE_HTTP_URL`，避免出现"配置项有但 workflow 漏映射"的半修状态
+- [修复] #2051 PR Review 的特权 `pull_request_target` 流程不再检出 fork PR head：敏感文件、标签、报告与 AI 审查统一通过 GitHub API 将 PR 元数据和 diff 作为数据读取，只执行主分支可信脚本；Python 语法、Flake8、确定性检查和离线测试继续由无 secrets 的 `pull_request` CI / `backend-gate` 执行，兼容 `actions/checkout` 新增的 fork checkout 安全保护。
+- [修复] 修复 Windows 上 mimetypes 冷启动时读取注册表导致的进程卡死
+- [新功能] Web 首页与 `POST /api/v1/analysis/market-review` 支持用严格校验的 `region` 字符串临时选择单个或多个复盘市场；一次性覆盖不读取或修改全局配置，“服务器默认”在任务提交边界解析为 canonical 实际执行市场，并贯穿 accepted 响应、任务状态/列表/SSE、完成态结构化 payload 与 History。
+- [修复] GitHub Actions PR Review 流程中的 `_event_payload()` 此前用 `except (OSError, ValueError): return {}` 把「事件文件缺失」「文件不可读」「JSON 非法」三类异常统一吞成空对象，下游只表现为 `PR number is unavailable` 无法定位根因；现保留空对象降级行为不变，但分别对三类失败输出不含载荷内容的警告（仅含异常类型与 `GITHUB_EVENT_PATH` 源路径），并补齐三类降级路径与「坏载荷导致 PR 编号不可用」链路的回归测试（fixes #2070）
+- [修复] DataFetcherManager 港股路由：4-5 位纯数字裸港股码（如 `02513`、`00700`、`0001`）此前仅 `_is_hk_market` 单侧识别，`AkshareFetcher._is_hk_code` 与 `LongbridgeFetcher._is_hk_code` 内仍只接受 5 位裸数字，导致配置了 Yfinance/Akshare/Longbridge 的港股日线/实时链路对 4 位裸港股码静默失败。本 PR 同步三处 `_is_hk_code` 契约到 4-5 位裸数字，并新增 `DataFetcherManager` 港股路由回归测试，避免上游路由判 HK、下游 provider 不识别的部分调用链断口（fixes #2091）
+- [修复] Web 设置页和通知测试入口补齐普通钉钉群机器人配置，支持安全遮罩地保存 `DINGTALK_WEBHOOK_URL` / `DINGTALK_SECRET`、查看专属帮助并发送钉钉测试通知（refs #1957）。
+- [修复] Agent Chat 普通与流式接口在请求未指定 `report_language` 时继承全局 `REPORT_LANGUAGE`，显式请求值仍保持优先，避免回复语言与报告配置不一致。
+- [修复] AkShare 港股实时行情增加 20 分钟全市场数据缓存与并发冷启动 single-flight，热缓存命中不再执行网络限速等待；主接口返回结构异常时仍保持新浪备用接口降级，避免多港股组合快照重复拉取全市场数据而长时间阻塞（refs #1852）。
 
-## [3.26.0] - 2026-07-12
+## [3.27.0] - 2026-07-19
+
+### 发布亮点
+
+- feat: 新增 Codex App Server single-agent 问股实验原型，并保持 LiteLLM、Multi Agent、普通报告和定时任务等默认链路不变。
+- feat: Web AI 建议页支持保存基于历史报告快照重算的决策风格信号，补齐去重、续期、失效和可审计 guardrail 语义。
+- feat: 引入多策略观点结构化输出第一阶段契约，覆盖观点标准化、基础冲突检测、聚合元数据和报告兼容边界。
+- improve: 报告页明确展示输入数据状态、来源、异常影响、处理建议和诊断码，并区分页面资讯与本次分析输入。
+- fix: 修复 MiniMax 推理内容污染最终 JSON、字符串 `<think>` 包装兼容及多 Agent 风险覆盖后结论未按最终信号收敛的问题。
+- fix: 补齐美股实时行情 PE/PB 估值字段、多市场工具描述和 macOS Gatekeeper 安装排障说明。
+
+### 新功能
+
+- 新增 #1743 Phase 6 Codex App Server single-agent 问股实验原型，仅开放三个既有只读 Tool Surface 工具；默认 LiteLLM、Multi Agent、Deep Research、普通报告、定时任务与 Phase 1/2 `codex_cli` 路径保持不变。
+- Web AI 建议页支持确认保存基于历史报告快照重算的决策风格信号，以 created/existing/refreshed 区分新建、原样复用和既有记录续期或维度补齐，并复用 profile-aware 去重与失效语义。
+- 多策略观点结构化输出第一版新增策略观点标准化、基础冲突检测与聚合 metadata，作为 #1964 的阶段性基础契约；本版本不声明完成并发执行、完整策略调度 MVP 或前端完整多语言展示。
+
+### 改进
+
+- Codex 设置页仅检查配置、命令和所需协议是否允许尝试，用户保存后可直接提问；Chat 以服务端 `accepted` 事件提交问题并按实际 backend 停止。
+- Web 报告页输入数据块沿用状态、来源、告警和说明字段，在说明中补充异常影响、处理建议与诊断码，并区分报告页资讯和本次分析输入。
+- 更新 Anspire 数据源的项目展示信息，并将 `get_stock_info` 工具说明从 A 股限定修正为覆盖 A 股、港股和美股。
+
+### 修复
+
+- 修复 MiniMax 分析与渠道 JSON 测试把推理内容和最终文本拼接后导致结果无法解析、无法持久化的问题；字符串响应仅剥离开头完整的 `<think>` 包装，并保留 JSON 内容中的同名字面标签。
+- 修正多 Agent 内部 runtime facts 的 timeout 归因，并让 risk application 覆盖后的 dashboard 决策字段及一句话核心结论基于 post-risk signal 完成 finalization。
+- 收敛多策略综合器语义：正确处理 Signal 枚举、缺失 signal、有效 opinion_count 和 deterministic synthesis，并兼容历史与外部 dashboard 的宽松字段形状。
+- Codex 问股只接受 App Server 明确完成的终态回答，并统一整体时限、累计输出、事件、工具预算和进程回收边界。
+- `codex_cli` 普通分析显式固定无人值守批准策略与只读沙箱，避免新版 Codex 在非交互任务中因请求人工批准而中断。
+- yfinance 美股实时行情补齐 `pe_ratio` 和 `pb_ratio`，供估值分析和下游报告使用。
+
+### 文档
+
+- 补充 macOS 未签名、未公证 DMG 被 Gatekeeper 拦截时的架构选择、安全排查与官方安装包临时放行步骤。
+
+## [3.26.1] - 2026-07-12
 
 ### 发布亮点
 
@@ -2007,7 +2063,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
-[Unreleased]: https://github.com/ZhuLinsen/daily_stock_analysis/compare/v3.25.0...HEAD
+[Unreleased]: https://github.com/ZhuLinsen/daily_stock_analysis/compare/v3.27.0...HEAD
+[3.27.0]: https://github.com/ZhuLinsen/daily_stock_analysis/compare/v3.26.1...v3.27.0
+[3.26.1]: https://github.com/ZhuLinsen/daily_stock_analysis/compare/v3.25.0...v3.26.1
 [3.25.0]: https://github.com/ZhuLinsen/daily_stock_analysis/compare/v3.24.1...v3.25.0
 [3.24.1]: https://github.com/ZhuLinsen/daily_stock_analysis/compare/v3.24.0...v3.24.1
 [3.24.0]: https://github.com/ZhuLinsen/daily_stock_analysis/compare/v3.23.0...v3.24.0

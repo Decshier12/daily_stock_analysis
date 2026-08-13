@@ -132,7 +132,7 @@ const GENERATION_BACKEND_STATUS_KEYS = new Set([
   'ANSPIRE_LLM_MODEL',
   'ANSPIRE_API_KEYS',
 ]);
-const LLM_CHANNEL_STATUS_KEY_PATTERN = /^LLM_[A-Z0-9_]+_(PROTOCOL|BASE_URL|API_KEY|API_KEYS|MODELS|EXTRA_HEADERS|ENABLED)$/;
+const LLM_CHANNEL_STATUS_KEY_PATTERN = /^LLM_[A-Z0-9_]+_(PROTOCOL|API_SURFACE|BASE_URL|API_KEY|API_KEYS|MODELS|EXTRA_HEADERS|ENABLED)$/;
 const AGENT_BACKEND_STATUS_KEYS = new Set([
   'AGENT_BACKEND',
   'AGENT_GENERATION_BACKEND',
@@ -914,6 +914,7 @@ const SettingsPage: React.FC = () => {
     refreshAfterExternalSave,
     configVersion,
     maskToken,
+    llmModelProviders,
   } = useSystemConfig();
 
   const currentChangedItems = getChangedItems();
@@ -1045,10 +1046,10 @@ const SettingsPage: React.FC = () => {
   const rawActiveItems = itemsByCategory[activeCategory] || [];
   const rawActiveItemMap = new Map(rawActiveItems.map((item) => [item.key, String(item.value ?? '')]));
   const firstSetupStockCode = parseSetupStockList(getConfigItem(itemsByCategory.base || [], 'STOCK_LIST')?.value)[0] || '';
-  const screeningItem = (itemsByCategory.data_source || []).find((item) => item.key === 'SCREENING_ENABLED');
+  const screeningItem = (itemsByCategory.base || []).find((item) => item.key === 'SCREENING_ENABLED');
   const screeningEnabled = String(screeningItem?.value ?? '').trim().toLowerCase() === 'true';
   const shouldShowFirstRunSetup = activeCategory === 'base';
-  const shouldShowScreeningSettings = activeCategory === 'data_source' && Boolean(screeningItem);
+  const shouldShowScreeningSettings = activeCategory === 'base' && Boolean(screeningItem);
   const hasConfiguredChannels = Boolean((rawActiveItemMap.get('LLM_CHANNELS') || '').trim());
   const hasLitellmConfig = Boolean((rawActiveItemMap.get('LITELLM_CONFIG') || '').trim());
   const hasRuntimeSchedulerMismatch =
@@ -1071,7 +1072,7 @@ const SettingsPage: React.FC = () => {
   // UI rendering rule only: hide channel-managed and legacy provider-specific
   // LLM keys from generic fields when channel mode is active. This does not
   // alter save/refresh payloads or config migration/rollback behavior.
-  const LLM_CHANNEL_KEY_RE = /^LLM_[A-Z0-9_]+_(PROTOCOL|BASE_URL|API_KEY|API_KEYS|MODELS|EXTRA_HEADERS|ENABLED)$/;
+  const LLM_CHANNEL_KEY_RE = /^LLM_[A-Z0-9_]+_(PROTOCOL|API_SURFACE|BASE_URL|API_KEY|API_KEYS|MODELS|EXTRA_HEADERS|ENABLED)$/;
   const AI_MODEL_HIDDEN_KEYS = new Set([
     'LLM_CHANNELS',
     'LLM_TEMPERATURE',
@@ -1103,12 +1104,14 @@ const SettingsPage: React.FC = () => {
     'ADMIN_AUTH_ENABLED',
     ...SCHEDULER_SETTING_KEYS,
   ]);
-  const DATA_SOURCE_HIDDEN_KEYS = new Set([
+  const BASE_HIDDEN_KEYS = new Set([
     'SCREENING_ENABLED',
   ]);
   const AGENT_HIDDEN_KEYS = new Set(['AGENT_GENERATION_BACKEND']);
   const activeItems =
-    activeCategory === 'ai_model'
+    activeCategory === 'base'
+      ? rawActiveItems.filter((item) => !BASE_HIDDEN_KEYS.has(item.key))
+    : activeCategory === 'ai_model'
       ? rawActiveItems.filter((item) => {
         if (hasConfiguredChannels && LLM_CHANNEL_KEY_RE.test(item.key)) {
           return false;
@@ -1120,8 +1123,6 @@ const SettingsPage: React.FC = () => {
       })
       : activeCategory === 'system'
         ? rawActiveItems.filter((item) => !SYSTEM_HIDDEN_KEYS.has(item.key))
-      : activeCategory === 'data_source'
-        ? rawActiveItems.filter((item) => !DATA_SOURCE_HIDDEN_KEYS.has(item.key))
       : activeCategory === 'agent'
         ? rawActiveItems.filter((item) => !AGENT_HIDDEN_KEYS.has(item.key))
       : rawActiveItems;
@@ -1584,13 +1585,6 @@ const SettingsPage: React.FC = () => {
                   <div className="flex flex-wrap items-center gap-2">
                     <Button
                       type="button"
-                      variant="settings-secondary"
-                      onClick={() => setActiveCategory('data_source')}
-                    >
-                      {t('settings.viewConfigItems')}
-                    </Button>
-                    <Button
-                      type="button"
                       variant={screeningEnabled ? 'settings-secondary' : 'settings-primary'}
                       onClick={() => void updateScreeningEnabled(!screeningEnabled)}
                       disabled={isSaving || isLoading || isUpdatingScreening}
@@ -1814,6 +1808,7 @@ const SettingsPage: React.FC = () => {
                   items={rawActiveItems}
                   configVersion={configVersion}
                   maskToken={maskToken}
+                  modelProviderPrefixes={llmModelProviders}
                   onDraftItemsChange={handleLlmChannelDraftItemsChange}
                   onSaved={async (updatedItems) => {
                     setLlmChannelDraftItems([]);

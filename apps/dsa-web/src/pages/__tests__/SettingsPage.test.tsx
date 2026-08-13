@@ -137,6 +137,7 @@ vi.mock('../../components/settings', () => ({
         type="button"
         onClick={() => onDraftItemsChange?.([
           { key: 'LLM_CHANNELS', value: 'draft,backup' },
+          { key: 'LLM_DRAFT_API_SURFACE', value: 'responses' },
           { key: 'LITELLM_MODEL', value: 'openai/draft-model' },
           { key: 'GENERATION_BACKEND', value: 'codex_cli' },
         ])}
@@ -1241,6 +1242,7 @@ describe('SettingsPage', () => {
     await waitFor(() => {
       expect(statusItems).toHaveTextContent('GENERATION_BACKEND=litellm');
       expect(statusItems).toHaveTextContent('LLM_CHANNELS=draft,backup');
+      expect(statusItems).toHaveTextContent('LLM_DRAFT_API_SURFACE=responses');
       expect(statusItems).toHaveTextContent('LITELLM_MODEL=openai/draft-model');
       expect(statusItems).toHaveTextContent('OPENAI_MODEL=gpt-draft');
       expect(statusItems).toHaveTextContent('GEMINI_MODEL=gemini-draft');
@@ -1392,10 +1394,11 @@ describe('SettingsPage', () => {
   it('runs Screening enable flow from the settings card', async () => {
     const configState = buildSystemConfigState();
     useSystemConfigMock.mockReturnValue(buildSystemConfigState({
-      activeCategory: 'data_source',
+      activeCategory: 'base',
       itemsByCategory: {
         ...configState.itemsByCategory,
-        data_source: [
+        base: [
+          ...configState.itemsByCategory.base,
           {
             key: 'SCREENING_ENABLED',
             value: 'false',
@@ -1403,7 +1406,7 @@ describe('SettingsPage', () => {
             isMasked: false,
             schema: {
               key: 'SCREENING_ENABLED',
-              category: 'data_source',
+              category: 'base',
               dataType: 'boolean',
               uiControl: 'switch',
               isSensitive: false,
@@ -1430,10 +1433,11 @@ describe('SettingsPage', () => {
   it('maps SCREENING_ENABLED to the built-in screening card instead of a generic field', () => {
     const configState = buildSystemConfigState();
     useSystemConfigMock.mockReturnValue(buildSystemConfigState({
-      activeCategory: 'data_source',
+      activeCategory: 'base',
       itemsByCategory: {
         ...configState.itemsByCategory,
-        data_source: [
+        base: [
+          ...configState.itemsByCategory.base,
           {
             key: 'SCREENING_ENABLED',
             value: 'false',
@@ -1441,7 +1445,7 @@ describe('SettingsPage', () => {
             isMasked: false,
             schema: {
               key: 'SCREENING_ENABLED',
-              category: 'data_source',
+              category: 'base',
               dataType: 'boolean',
               uiControl: 'switch',
               isSensitive: false,
@@ -1459,12 +1463,14 @@ describe('SettingsPage', () => {
     render(<SettingsPage />);
 
     expect(screen.getByRole('button', { name: '开启选股' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '查看配置项' })).not.toBeInTheDocument();
     expect(screen.queryByTestId('settings-field-SCREENING_ENABLED')).not.toBeInTheDocument();
   });
 
-  it('scopes setup and Screening helper cards to their related categories', async () => {
+  it('shows the Screening control only on the base settings page', async () => {
     const configState = buildSystemConfigState();
-    const dataSourceItems = [
+    const baseItems = [
+      ...configState.itemsByCategory.base,
       {
         key: 'SCREENING_ENABLED',
         value: 'false',
@@ -1472,7 +1478,7 @@ describe('SettingsPage', () => {
         isMasked: false,
         schema: {
           key: 'SCREENING_ENABLED',
-          category: 'data_source',
+          category: 'base',
           dataType: 'boolean',
           uiControl: 'switch',
           isSensitive: false,
@@ -1489,37 +1495,37 @@ describe('SettingsPage', () => {
       activeCategory: 'base',
       itemsByCategory: {
         ...configState.itemsByCategory,
-        data_source: dataSourceItems,
+        base: baseItems,
       },
     }));
 
     const { rerender } = render(<SettingsPage />);
 
     expect(await screen.findByRole('heading', { name: '首次启动配置检查' })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: '内建选股' })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: '选股' })).toBeInTheDocument();
 
     useSystemConfigMock.mockReturnValue(buildSystemConfigState({
       activeCategory: 'ai_model',
       itemsByCategory: {
         ...configState.itemsByCategory,
-        data_source: dataSourceItems,
+        base: baseItems,
       },
     }));
     rerender(<SettingsPage />);
 
     expect(screen.queryByRole('heading', { name: '首次启动配置检查' })).not.toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: '内建选股' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: '选股' })).not.toBeInTheDocument();
 
     useSystemConfigMock.mockReturnValue(buildSystemConfigState({
       activeCategory: 'data_source',
       itemsByCategory: {
         ...configState.itemsByCategory,
-        data_source: dataSourceItems,
+        base: baseItems,
       },
     }));
     rerender(<SettingsPage />);
 
-    expect(await screen.findByRole('heading', { name: '内建选股' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: '选股' })).not.toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: '首次启动配置检查' })).not.toBeInTheDocument();
   });
 
@@ -2135,10 +2141,11 @@ describe('SettingsPage', () => {
     const configState = buildSystemConfigState();
     screeningEnable.mockRejectedValueOnce(new Error('config update failed'));
     useSystemConfigMock.mockReturnValue(buildSystemConfigState({
-      activeCategory: 'data_source',
+      activeCategory: 'base',
       itemsByCategory: {
         ...configState.itemsByCategory,
-        data_source: [
+        base: [
+          ...configState.itemsByCategory.base,
           {
             key: 'SCREENING_ENABLED',
             value: 'false',
@@ -2146,7 +2153,7 @@ describe('SettingsPage', () => {
             isMasked: false,
             schema: {
               key: 'SCREENING_ENABLED',
-              category: 'data_source',
+              category: 'base',
               dataType: 'boolean',
               uiControl: 'switch',
               isSensitive: false,

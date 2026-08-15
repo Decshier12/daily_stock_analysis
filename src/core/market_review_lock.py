@@ -187,8 +187,18 @@ def try_acquire_market_review_lock(
                     try:
                         lock_path.unlink()
                     except OSError as exc:
-                        logger.warning("清理过期 market_review.lock 失败: %s", exc)
-                        return None
+                        logger.warning(
+                            "删除过期锁文件失败（沙箱可能拦截了删除操作），"
+                            "尝试直接覆写: %s", exc
+                        )
+                        try:
+                            fd = os.open(str(lock_path), os.O_RDWR | os.O_TRUNC)
+                            break
+                        except OSError as exc2:
+                            logger.warning(
+                                "覆写过期 market_review.lock 也失败: %s", exc2
+                            )
+                            return None
 
             if fd is None:
                 return None
@@ -223,5 +233,9 @@ def release_market_review_lock(
         if not lock_token.uses_flock:
             try:
                 lock_token.path.unlink()
-            except FileNotFoundError:
-                pass
+            except (FileNotFoundError, OSError):
+                # 沙箱可能拦截删除 → 退化为 truncate 清空文件
+                try:
+                    lock_token.path.write_text("")
+                except OSError:
+                    pass

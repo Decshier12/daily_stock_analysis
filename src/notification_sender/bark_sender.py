@@ -37,6 +37,8 @@ from __future__ import annotations
 
 import logging
 import os
+import re
+import unicodedata
 from datetime import datetime
 from typing import List, Optional, Tuple
 from urllib.parse import urlparse, urlunparse
@@ -51,6 +53,108 @@ logger = logging.getLogger(__name__)
 # Official api.day.app sits behind nginx with a small per-message body limit
 # (~8KB). Chunk below that to stay safe; self-hosted servers can raise this.
 BARK_MAX_BODY_BYTES = int(os.getenv("BARK_MAX_BODY_BYTES", "4000") or "4000")
+
+
+# Bark notifications are plain system text and cannot render Markdown, so we
+# strip the markup down to a notification-friendly plaintext before sending.
+_TABLE_SEP_RE = re.compile(r"^\s*\|?[\s:|\-]+\|?\s*$")
+_TABLE_ROW_RE = re.compile(r"^\s*\|.*\|\s*$")
+
+
+def _disp_width(ch: str) -> int:
+    """Display width: fullwidth/CJK chars count as 2, others as 1."""
+    return 2 if unicodedata.east_asian_width(ch) in ("W", "F") else 1
+
+
+def _line_width(s: str) -> int:
+    return sum(_disp_width(c) for c in s)
+
+
+# iPhone 13 Pro notification body is ~20 Chinese chars wide; leave headroom.
+_MAX_LINE_WIDTH = 46
+
+
+def _clean_inline(text: str) -> str:
+    """Strip inline Markdown markers from a single chunk of text."""
+    text = text.replace("**", "")
+    text = re.sub(r"\*([^*]+)\*", r"\1", text)  # italic *x*
+    text = re.sub(r"`([^`]*)`", r"\1", text)  # inline code
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)  # links
+    text = re.sub(r"^\s*>\s?", "", text)  # blockquote
+    text = text.replace("* ", "• ").replace("- ", "• ")  # list bullets
+    text = text.replace(" | ", " · ")  # inline pipe separators
+    return text
+
+
+def _soft_wrap(line: str, max_w: int = _MAX_LINE_WIDTH) -> str:
+    """Break an over-long line at separators (· space ，。；、) for phone width."""
+    if _line_width(line) <= max_w:
+        return line
+    out: List[str] = []
+    cur = ""
+    cur_w = 0
+    for ch in line:
+        cw = _disp_width(ch)
+        if cur_w >= max_w and ch in " ·，。；、":
+            out.append(cur + ch)  # 分隔符留在行尾，下行从新词开始
+            cur, cur_w = "", 0
+        else:
+            cur += ch
+            cur_w += cw
+    if cur:
+        out.append(cur)
+    return "\n".join(out)
+
+
+def _split_row(line: str) -> List[str]:
+    return [c.strip() for c in line.strip().strip("|").split("|")]
+
+
+def _markdown_to_plaintext(md: str) -> str:
+    """Convert a Markdown report into phone-friendly plaintext.
+
+    - Drops heading ``#`` markers and table separator rows.
+    - **Flattens Markdown tables into vertical ``key: value`` lines** so each
+      field fits an iPhone notification width instead of one ultra-wide row.
+    - Strips ``**bold**`` / ``*italic*`` / ``code`` / links / quotes.
+    - Soft-wraps any remaining over-long line at separators (~20 Chinese chars).
+    - Keeps emoji, Chinese text and numbers; preserves blank lines.
+    """
+    if not md:
+        return md
+    lines = md.split("\n")
+    out: List[str] = []
+    pending_headers: List[str] = []
+    i = 0
+    while i < len(lines):
+        raw = lines[i].rstrip()
+        if _TABLE_SEP_RE.match(raw) and "-" in raw:
+            i += 1
+            continue
+        if _TABLE_ROW_RE.match(raw):
+            nxt = lines[i + 1].rstrip() if i + 1 < len(lines) else ""
+            if _TABLE_SEP_RE.match(nxt) and "-" in nxt:
+                # This row is a header (next row is the separator); store keys.
+                pending_headers = _split_row(raw)
+            else:
+                cells = _split_row(raw)
+                if pending_headers:
+                    for h, c in zip(pending_headers, cells):
+                        if c:
+                            out.append(f"{h}: {_clean_inline(c)}")
+                else:
+                    flat = " · ".join(_clean_inline(c) for c in cells if c)
+                    out.append(_soft_wrap(flat))
+            i += 1
+            continue
+        line = re.sub(r"^#{1,6}\s+", "", raw)
+        line = _clean_inline(line)
+        line = _soft_wrap(line)
+        out.append(line)
+        i += 1
+    text = "\n".join(out)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
 
 
 def _split_into_byte_chunks(text: str, max_bytes: int) -> List[str]:
@@ -223,6 +327,13 @@ class BarkSender:
 
         if not content or not content.strip():
             logger.warning("Bark 推送内容为空，跳过")
+            return False
+
+        # Bark is an iOS system notification and cannot render Markdown;
+        # strip the report down to plaintext before pushing.
+        content = _markdown_to_plaintext(content)
+        if not content:
+            logger.warning("Bark 推送内容经 Markdown 清洗后为空，跳过")
             return False
 
         if title is None:

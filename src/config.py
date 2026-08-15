@@ -1399,6 +1399,7 @@ class Config:
                 'szse.cn',         # 深交所
                 'csindex.com.cn',  # 中证指数
                 'cninfo.com.cn',   # 巨潮资讯
+                'api.day.app',     # Bark 推送（直连更快，走代理 TLS 易超时）
                 'localhost',
                 '127.0.0.1'
             ]

@@ -1,0 +1,640 @@
+2026-07-08 21:45:29 | INFO     | root | src\logging_config.py:188 | 日志系统初始化完成，日志目录: logs
+2026-07-08 21:45:29 | INFO     | root | src\logging_config.py:189 | 常规日志: logs\stock_analysis_20260708.log
+2026-07-08 21:45:29 | INFO     | root | src\logging_config.py:190 | 调试日志: logs\stock_analysis_debug_20260708.log
+2026-07-08 21:45:29 | INFO     | __main__ | main.py:1269 | ============================================================
+2026-07-08 21:45:29 | INFO     | __main__ | main.py:1270 | A股自选股智能分析系统 启动
+2026-07-08 21:45:29 | INFO     | __main__ | main.py:1271 | 运行时间: 2026-07-08 21:45:29
+2026-07-08 21:45:29 | INFO     | __main__ | main.py:1272 | ============================================================
+2026-07-08 21:45:29 | WARNING  | __main__ | main.py:1277 | 未配置 Tushare Token，将使用其他数据源
+2026-07-08 21:45:29 | WARNING  | __main__ | main.py:1277 | 仅配置 FEISHU_APP_ID / FEISHU_APP_SECRET 不会开启飞书静态通知。 请选择以下方式之一：配置 FEISHU_CHAT_ID 开启 App Bot 主动推送；开启 FEISHU_STREAM_ENABLED 使用应用机器人事件订阅；配置 FEISHU_WEBHOOK_URL 使用自定义机器人 Webhook 推送。
+2026-07-08 21:45:29 | INFO     | __main__ | main.py:1297 | 使用命令行指定的股票列表: ['563020', '159222']
+2026-07-08 21:45:47 | INFO     | src.storage | src\storage.py:1189 | 数据库初始化完成: sqlite:///G:\daily_stock_analysis\data\stock_analysis.db
+2026-07-08 21:45:47 | INFO     | data_provider.base | data_provider\base.py:1232 | 已初始化 6 个数据源（按优先级）: EfinanceFetcher(P0), TencentFetcher(P0), AkshareFetcher(P1), PytdxFetcher(P2), BaostockFetcher(P3), YfinanceFetcher(P4)
+2026-07-08 21:45:47 | INFO     | src.analyzer | src\analyzer.py:2548 | Analyzer LLM: litellm initialized (model=deepseek/deepseek-v4-flash)
+2026-07-08 21:45:47 | INFO     | src.notification | src\notification.py:263 | 已配置 1 个通知渠道：Discord机器人
+2026-07-08 21:45:47 | INFO     | src.search_service | src\search_service.py:2339 | 已启用 SearXNG 公共实例自动发现模式
+2026-07-08 21:45:47 | INFO     | src.search_service | src\search_service.py:2355 | 新闻时效策略已启用: profile=short, profile_days=3, NEWS_MAX_AGE_DAYS=3, effective_window=3
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:248 | 调度器初始化完成，最大并发数: 3
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:249 | 已启用技术分析引擎（均线/趋势/量价指标）
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:252 | 实时行情已启用 (优先级: tencent,akshare_sina,efinance,akshare_em)
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:256 | 筹码分布分析已启用
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:262 | 搜索服务已启用
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:2886 | ===== 开始分析 2 只股票 =====
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:2887 | 股票列表: 563020, 159222
+2026-07-08 21:45:47 | INFO     | src.core.pipeline | src\core\pipeline.py:2888 | 并发数: 3, 模式: 完整分析
+G:\daily_stock_analysis\.venv\lib\site-packages\pytdx\reader\block_reader.py:117: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  if code is not '':
+G:\daily_stock_analysis\.venv\lib\site-packages\pytdx\reader\block_reader.py:128: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  cc = [c[1:] for c in codes if c is not '']
+2026-07-08 21:46:22 | INFO     | data_provider.pytdx_fetcher | data_provider\pytdx_fetcher.py:162 | Pytdx 连接失败，进入冷却 15s: Pytdx 无法连接任何服务器
+login success!
+logout success!
+2026-07-08 21:46:29 | INFO     | data_provider.base | data_provider\base.py:2291 | [股票名称] 从 BaostockFetcher 获取: 563020 -> 易方达中证红利低波动ETF
+login success!
+logout success!
+2026-07-08 21:46:34 | INFO     | data_provider.base | data_provider\base.py:2291 | [股票名称] 从 BaostockFetcher 获取: 159222 -> 易方达国证自由现金流ETF
+2026-07-08 21:46:34 | INFO     | src.core.pipeline | src\core\pipeline.py:2782 | ========== 开始处理 563020 ==========
+2026-07-08 21:46:34 | INFO     | src.core.pipeline | src\core\pipeline.py:2782 | ========== 开始处理 159222 ==========
+2026-07-08 21:46:34 | INFO     | src.core.pipeline | src\core\pipeline.py:337 | 易方达中证红利低波动ETF(563020) 2026-07-08 数据已存在，跳过获取（断点续传）
+2026-07-08 21:46:34 | INFO     | src.core.pipeline | src\core\pipeline.py:337 | 易方达国证自由现金流ETF(159222) 2026-07-08 数据已存在，跳过获取（断点续传）
+2026-07-08 21:46:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:34 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=1, wait_seconds=0.50, region=cn, target_date=2026-07-08
+2026-07-08 21:46:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:34 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=2, wait_seconds=0.75, region=cn, target_date=2026-07-08
+2026-07-08 21:46:35 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:35 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:35 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=3, wait_seconds=1.12, region=cn, target_date=2026-07-08
+2026-07-08 21:46:36 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:36 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:36 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=4, wait_seconds=1.69, region=cn, target_date=2026-07-08
+2026-07-08 21:46:38 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:38 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:38 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=5, wait_seconds=2.53, region=cn, target_date=2026-07-08
+2026-07-08 21:46:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:40 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=6, wait_seconds=3.80, region=cn, target_date=2026-07-08
+2026-07-08 21:46:44 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:44 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:44 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=7, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:46:49 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:49 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:49 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=8, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:46:54 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:54 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:54 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=9, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:46:59 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:59 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:46:59 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=10, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:04 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:04 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:04 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=11, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:09 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:09 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:09 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=12, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:14 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:14 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:14 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=13, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:19 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:19 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:19 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=14, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:24 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:24 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:24 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=15, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:29 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:29 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:29 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=16, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:34 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=17, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:39 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:39 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:39 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=18, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:44 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:44 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:44 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=19, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:49 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:49 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:49 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=20, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:54 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:54 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:54 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=21, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:47:59 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:59 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:47:59 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=22, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:04 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:04 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:04 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=23, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:09 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:09 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:09 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=24, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:14 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:14 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:14 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=25, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:19 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:19 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:19 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=26, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:24 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:24 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:24 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=27, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:29 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:29 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:29 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=28, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:34 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=29, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:40 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=30, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:45 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=31, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:50 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=32, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:48:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:48:55 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=33, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:49:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:00 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=34, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:49:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:05 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=35, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:49:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:10 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=36, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:49:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:15 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=37, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:49:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:20 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=38, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:49:25 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:25 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:25 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=39, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | WARNING  | src.services.daily_market_context | src\services\daily_market_context.py:578 | 市场复盘上下文锁竞争等待超限后仍未命中同日上下文，允许继续分析流程: region=cn, target_date=2026-07-08
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=1, wait_seconds=0.50, region=cn, target_date=2026-07-08
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:30 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=2, wait_seconds=0.75, region=cn, target_date=2026-07-08
+2026-07-08 21:49:31 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:31 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:31 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=3, wait_seconds=1.12, region=cn, target_date=2026-07-08
+2026-07-08 21:49:32 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:32 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:32 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=4, wait_seconds=1.69, region=cn, target_date=2026-07-08
+2026-07-08 21:49:33 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1390 | [API调用] ak.fund_etf_spot_em() 获取ETF实时行情... (attempt 1/2)
+  0%|          | 0/15 [00:00<?, ?it/s]2026-07-08 21:49:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:34 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:34 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=5, wait_seconds=2.53, region=cn, target_date=2026-07-08
+  7%|▋         | 1/15 [00:01<00:27,  1.93s/it]2026-07-08 21:49:36 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:36 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:36 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=6, wait_seconds=3.80, region=cn, target_date=2026-07-08
+ 13%|█▎        | 2/15 [00:03<00:22,  1.75s/it] 20%|██        | 3/15 [00:05<00:24,  2.00s/it]2026-07-08 21:49:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:40 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=7, wait_seconds=5.00, region=cn, target_date=2026-07-08
+ 27%|██▋       | 4/15 [00:07<00:19,  1.77s/it] 33%|███▎      | 5/15 [00:08<00:14,  1.41s/it] 40%|████      | 6/15 [00:09<00:12,  1.42s/it] 47%|████▋     | 7/15 [00:10<00:09,  1.20s/it] 53%|█████▎    | 8/15 [00:11<00:08,  1.21s/it]2026-07-08 21:49:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:45 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=8, wait_seconds=5.00, region=cn, target_date=2026-07-08
+ 60%|██████    | 9/15 [00:13<00:07,  1.32s/it] 67%|██████▋   | 10/15 [00:15<00:08,  1.73s/it]2026-07-08 21:49:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:50 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=9, wait_seconds=5.00, region=cn, target_date=2026-07-08
+ 73%|███████▎  | 11/15 [00:17<00:07,  1.86s/it] 80%|████████  | 12/15 [00:19<00:05,  1.86s/it] 87%|████████▋ | 13/15 [00:20<00:03,  1.61s/it]2026-07-08 21:49:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:49:55 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=10, wait_seconds=5.00, region=cn, target_date=2026-07-08
+ 93%|█████████▎| 14/15 [00:22<00:01,  1.71s/it]100%|██████████| 15/15 [00:24<00:00,  1.62s/it]                                               2026-07-08 21:49:58 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1397 | [API返回] ak.fund_etf_spot_em 成功: 返回 1537 只ETF, 耗时 24.26s
+2026-07-08 21:49:58 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 563020 红利低波ETF易方达: 价格=1.116, 涨跌=1.45%, 换手率=2.91%
+2026-07-08 21:49:58 | INFO     | data_provider.base | data_provider\base.py:1918 | [实时行情] 563020 成功获取 (来源: tencent)
+2026-07-08 21:49:58 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 563020 红利低波ETF易方达: 价格=1.116, 涨跌=1.45%, 换手率=2.91%
+2026-07-08 21:50:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:00 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=11, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:00 | INFO     | data_provider.efinance_fetcher | data_provider\efinance_fetcher.py:769 | [API调用] ef.stock.get_realtime_quotes(['ETF']) 获取ETF实时行情...
+2026-07-08 21:50:00 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:00 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:01 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:01 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:01 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:01 | INFO     | data_provider.efinance_fetcher | data_provider\efinance_fetcher.py:832 | [API错误] 获取 ETF 563020 实时行情(efinance)失败: HTTPConnectionPool(host='push2.eastmoney.com', port=80): Max retries exceeded with url: /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+2026-07-08 21:50:01 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 563020 红利低波ETF易方达: 价格=1.116, 涨跌=1.45%, 换手率=2.91%
+2026-07-08 21:50:01 | INFO     | src.core.pipeline | src\core\pipeline.py:432 | 红利低波ETF易方达(563020) 实时行情: 价格=1.116, 量比=1.14, 换手率=2.91% (来源: akshare_em)
+2026-07-08 21:50:01 | WARNING  | data_provider.base | data_provider\base.py:2228 | [筹码分布] 563020 所有数据源均失败
+2026-07-08 21:50:01 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 563020 红利低波ETF易方达: 价格=1.116, 涨跌=1.45%, 换手率=2.91%
+2026-07-08 21:50:01 | INFO     | data_provider.base | data_provider\base.py:1918 | [实时行情] 563020 成功获取 (来源: tencent)
+2026-07-08 21:50:01 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 563020 红利低波ETF易方达: 价格=1.116, 涨跌=1.45%, 换手率=2.91%
+2026-07-08 21:50:04 | INFO     | data_provider.efinance_fetcher | data_provider\efinance_fetcher.py:769 | [API调用] ef.stock.get_realtime_quotes(['ETF']) 获取ETF实时行情...
+2026-07-08 21:50:04 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:04 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:04 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:04 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:04 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:50:04 | INFO     | data_provider.efinance_fetcher | data_provider\efinance_fetcher.py:832 | [API错误] 获取 ETF 563020 实时行情(efinance)失败: HTTPConnectionPool(host='push2.eastmoney.com', port=80): Max retries exceeded with url: /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+2026-07-08 21:50:04 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 563020 红利低波ETF易方达: 价格=1.116, 涨跌=1.45%, 换手率=2.91%
+2026-07-08 21:50:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:05 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=12, wait_seconds=5.00, region=cn, target_date=2026-07-08
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:00<00:00,  5.20it/s] 40%|████      | 2/5 [00:00<00:00,  6.03it/s] 60%|██████    | 3/5 [00:00<00:00,  4.75it/s] 80%|████████  | 4/5 [00:00<00:00,  5.09it/s]100%|██████████| 5/5 [00:00<00:00,  5.81it/s]                                               0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:00<00:00,  6.24it/s]2026-07-08 21:50:07 | INFO     | src.core.pipeline | src\core\pipeline.py:526 | 红利低波ETF易方达(563020) 趋势分析: 弱势多头, 买入信号=观望, 评分=54
+ 50%|█████     | 2/4 [00:00<00:00,  3.89it/s]2026-07-08 21:50:07 | INFO     | src.core.pipeline | src\core\pipeline.py:559 | 红利低波ETF易方达(563020) 开始多维度情报搜索...
+2026-07-08 21:50:07 | INFO     | src.search_service | src\search_service.py:4059 | 开始多维度情报搜索: 红利低波ETF易方达(563020), 时间范围: 近3天 (profile=short, NEWS_MAX_AGE_DAYS=3), 目标条数=3, provider请求条数=6
+2026-07-08 21:50:07 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 最新消息: 使用 SearXNG，请求窗口: 近3天
+ 75%|███████▌  | 3/4 [00:00<00:00,  4.80it/s]100%|██████████| 4/4 [00:00<00:00,  5.26it/s]                                             2026-07-08 21:50:10 | INFO     | src.search_service | src\search_service.py:1853 | [SearXNG] 已刷新公共实例池，共 20 个候选实例
+2026-07-08 21:50:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:10 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=13, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:12 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.rhscz.eu 搜索失败: Too Many Requests
+2026-07-08 21:50:13 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.tiekoetter.com 搜索失败: Too Many Requests
+2026-07-08 21:50:14 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.oloke.xyz 搜索失败: HTTP 500
+2026-07-08 21:50:14 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 最新消息: 搜索失败 - https://search.rhscz.eu: Too Many Requests；https://searx.tiekoetter.com: Too Many Requests；https://searx.oloke.xyz: HTTP 500
+2026-07-08 21:50:14 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 机构分析: 使用 SearXNG，请求窗口: 近180天
+2026-07-08 21:50:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:15 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=14, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:20 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.tiekoetter.com 搜索失败: Too Many Requests
+2026-07-08 21:50:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:20 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=15, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:21 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.oloke.xyz 搜索失败: HTTP 500
+2026-07-08 21:50:23 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.rhscz.eu 搜索失败: Too Many Requests
+2026-07-08 21:50:23 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 机构分析: 搜索失败 - https://searx.tiekoetter.com: Too Many Requests；https://searx.oloke.xyz: HTTP 500；https://searx.rhscz.eu: Too Many Requests
+2026-07-08 21:50:24 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 风险排查: 使用 SearXNG，请求窗口: 近3天
+2026-07-08 21:50:25 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:25 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:25 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=16, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:29 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.oloke.xyz 搜索失败: HTTP 500
+2026-07-08 21:50:30 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.rhscz.eu 搜索失败: Too Many Requests
+2026-07-08 21:50:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:30 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=17, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:31 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.linxx.net 搜索失败: Too Many Requests
+2026-07-08 21:50:31 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 风险排查: 搜索失败 - https://searx.oloke.xyz: HTTP 500；https://searx.rhscz.eu: Too Many Requests；https://searx.linxx.net: Too Many Requests
+2026-07-08 21:50:32 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 公司公告: 使用 SearXNG，请求窗口: 近3天
+2026-07-08 21:50:33 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.rhscz.eu 搜索失败: Too Many Requests
+2026-07-08 21:50:34 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.linxx.net 搜索失败: Too Many Requests
+2026-07-08 21:50:35 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.mdosch.de 搜索失败: Too Many Requests
+2026-07-08 21:50:35 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 公司公告: 搜索失败 - https://searx.rhscz.eu: Too Many Requests；https://searx.linxx.net: Too Many Requests；https://search.mdosch.de: Too Many Requests
+2026-07-08 21:50:35 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:35 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:35 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=18, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:36 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 业绩预期: 使用 SearXNG，请求窗口: 近180天
+2026-07-08 21:50:37 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.linxx.net 搜索失败: Too Many Requests
+2026-07-08 21:50:38 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.mdosch.de 搜索失败: Too Many Requests
+2026-07-08 21:50:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:40 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=19, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:43 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.bladerunn.in 搜索失败: 请求超时
+2026-07-08 21:50:43 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 业绩预期: 搜索失败 - https://searx.linxx.net: Too Many Requests；https://search.mdosch.de: Too Many Requests；https://search.bladerunn.in: 请求超时
+2026-07-08 21:50:44 | INFO     | src.core.pipeline | src\core\pipeline.py:575 | 红利低波ETF易方达(563020) 情报搜索完成: 共 0 条结果
+2026-07-08 21:50:44 | INFO     | src.agent.skills.base | src\agent\skills\base.py:360 | Loaded 15 built-in skills from G:\daily_stock_analysis\strategies
+2026-07-08 21:50:44 | INFO     | src.agent.factory | src\agent\factory.py:236 | [AgentFactory] SkillManager prototype cached (15 skills)
+2026-07-08 21:50:44 | INFO     | src.agent.skills.base | src\agent\skills\base.py:431 | Activated skills: ['bull_trend']
+2026-07-08 21:50:44 | INFO     | src.agent.factory | src\agent\factory.py:280 | [AgentFactory] Activated skills: ['bull_trend']
+2026-07-08 21:50:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:45 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=20, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:46 | INFO     | src.analyzer | src\analyzer.py:3519 | ========== AI 分析 红利低波ETF易方达(563020) ==========
+2026-07-08 21:50:46 | INFO     | src.analyzer | src\analyzer.py:3520 | [LLM配置] 模型: deepseek/deepseek-v4-flash
+2026-07-08 21:50:46 | INFO     | src.analyzer | src\analyzer.py:3521 | [LLM配置] Prompt 长度: 3939 字符
+2026-07-08 21:50:46 | INFO     | src.analyzer | src\analyzer.py:3522 | [LLM配置] 是否包含新闻: 是
+2026-07-08 21:50:46 | INFO     | src.analyzer | src\analyzer.py:3529 | [LLM Prompt 预览]
+# 决策仪表盘分析请求
+
+## 📊 股票基础信息
+| 项目 | 数据 |
+|------|------|
+| 股票代码 | **563020** |
+| 股票名称 | **红利低波ETF易方达** |
+| 分析日期 | 2026-07-08 |
+
+---
+
+## 市场阶段上下文
+- 当前市场阶段：盘后
+- 市场：cn
+- 市场本地时间：2026-07-08T21:45:47.013881+08:00
+- 最新可复用完整日线日期：2026-07-08
+- 阶段约束：常规交易时段已结束，可以保留完整交易日复盘语义。
+
+## 分析上下文包摘要
+- 标的：563020（红利低波ETF易方达）；市场=cn，pack_version=1.0
+- 数据块状态：
+  - 行情: available；source=akshare_em
+  - 日线: available；source=storage.get_analysis_context
+  - 技术: partial；告警=intraday_realtime_overlay
+  - 筹码: missing；missing_reason=chip_d...
+2026-07-08 21:50:46 | INFO     | src.analyzer | src\analyzer.py:3539 | [LLM调用] 开始调用 deepseek/deepseek-v4-flash...
+2026-07-08 21:50:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:50 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=21, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:50:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:50:55 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=22, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:00 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=23, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:05 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=24, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:10 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=25, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:15 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=26, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:20 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=27, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:23 | INFO     | src.analyzer | src\analyzer.py:3574 | [LLM返回] deepseek/deepseek-v4-flash 响应成功, 耗时 37.57s, 响应长度 4706 字符
+2026-07-08 21:51:23 | INFO     | src.analyzer | src\analyzer.py:3581 | [LLM返回 预览]
+{
+    "stock_name": "红利低波ETF易方达（563020）",
+    "sentiment_score": 54,
+    "trend_prediction": "震荡",
+    "operation_advice": "观望",
+    "decision_type": "hold",
+    "action": "watch",
+    "guardrail_reason": "",
+    "confidence_level": "中",
+    "dashboard": {
+        "core_conclusion": {
+            "o...
+2026-07-08 21:51:23 | INFO     | src.analyzer | src\analyzer.py:3638 | [LLM解析] 红利低波ETF易方达(563020) 分析完成: 震荡, 评分 54
+2026-07-08 21:51:23 | INFO     | src.core.pipeline | src\core\pipeline.py:2821 | [563020] 分析完成: 观望, 评分 54
+2026-07-08 21:51:25 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:25 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:25 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=28, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:30 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:30 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=29, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:35 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:35 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:35 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=30, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:40 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:40 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=31, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:45 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:45 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=32, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:50 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:50 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=33, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:51:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:55 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:51:55 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=34, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:52:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:00 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:00 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=35, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:52:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:05 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:05 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=36, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:52:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:10 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:10 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=37, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:52:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:15 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=38, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:52:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:20 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:20 | INFO     | src.services.daily_market_context | src\services\daily_market_context.py:565 | 市场复盘上下文锁竞争等待: attempt=39, wait_seconds=5.00, region=cn, target_date=2026-07-08
+2026-07-08 21:52:26 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:26 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:52:26 | WARNING  | src.services.daily_market_context | src\services\daily_market_context.py:578 | 市场复盘上下文锁竞争等待超限后仍未命中同日上下文，允许继续分析流程: region=cn, target_date=2026-07-08
+2026-07-08 21:52:26 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 159222 自由现金流ETF易方达: 价格=1.159, 涨跌=-0.43%, 换手率=4.13%
+2026-07-08 21:52:26 | INFO     | data_provider.base | data_provider\base.py:1918 | [实时行情] 159222 成功获取 (来源: tencent)
+2026-07-08 21:52:26 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 159222 自由现金流ETF易方达: 价格=1.159, 涨跌=-0.43%, 换手率=4.13%
+2026-07-08 21:52:27 | INFO     | data_provider.efinance_fetcher | data_provider\efinance_fetcher.py:769 | [API调用] ef.stock.get_realtime_quotes(['ETF']) 获取ETF实时行情...
+2026-07-08 21:52:27 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:52:28 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:52:28 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:52:28 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:52:28 | WARNING  | urllib3.connectionpool | .venv\lib\site-packages\urllib3\connectionpool.py:869 | Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297
+2026-07-08 21:52:28 | INFO     | data_provider.efinance_fetcher | data_provider\efinance_fetcher.py:832 | [API错误] 获取 ETF 159222 实时行情(efinance)失败: HTTPConnectionPool(host='push2.eastmoney.com', port=80): Max retries exceeded with url: /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+2026-07-08 21:52:28 | WARNING  | data_provider.realtime_types | data_provider\realtime_types.py:421 | [熔断器] efinance_etf 连续失败 3 次，进入熔断状态 (冷却 300.0s)
+2026-07-08 21:52:28 | WARNING  | data_provider.realtime_types | data_provider\realtime_types.py:424 | [熔断器] 最后错误: HTTPConnectionPool(host='push2.eastmoney.com', port=80): Max retries exceeded with url: /api/qt/clist/get?pn=1&pz=200&po=1&np=1&fltt=2&invt=2&fid=f12&fs=b%3AMK0021%2Cb%3AMK0022%2Cb%3AMK0023%2Cb%3AMK0024&fields=f12%2Cf14%2Cf3%2Cf2%2Cf15%2Cf16%2Cf17%2Cf4%2Cf8%2Cf10%2Cf9%2Cf5%2Cf6%2Cf18%2Cf20%2Cf21%2Cf13%2Cf124%2Cf297 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+2026-07-08 21:52:28 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 159222 自由现金流ETF易方达: 价格=1.159, 涨跌=-0.43%, 换手率=4.13%
+2026-07-08 21:52:28 | INFO     | src.core.pipeline | src\core\pipeline.py:432 | 自由现金流ETF易方达(159222) 实时行情: 价格=1.159, 量比=0.87, 换手率=4.13% (来源: akshare_em)
+2026-07-08 21:52:28 | WARNING  | data_provider.base | data_provider\base.py:2228 | [筹码分布] 159222 所有数据源均失败
+2026-07-08 21:52:28 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 159222 自由现金流ETF易方达: 价格=1.159, 涨跌=-0.43%, 换手率=4.13%
+2026-07-08 21:52:28 | INFO     | data_provider.base | data_provider\base.py:1918 | [实时行情] 159222 成功获取 (来源: tencent)
+2026-07-08 21:52:28 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 159222 自由现金流ETF易方达: 价格=1.159, 涨跌=-0.43%, 换手率=4.13%
+2026-07-08 21:52:28 | INFO     | data_provider.efinance_fetcher | data_provider\efinance_fetcher.py:753 | [熔断] 数据源 efinance_etf 处于熔断状态，跳过
+2026-07-08 21:52:28 | INFO     | data_provider.akshare_fetcher | data_provider\akshare_fetcher.py:1447 | [ETF实时行情] 159222 自由现金流ETF易方达: 价格=1.159, 涨跌=-0.43%, 换手率=4.13%
+2026-07-08 21:52:31 | INFO     | src.core.pipeline | src\core\pipeline.py:526 | 自由现金流ETF易方达(159222) 趋势分析: 弱势多头, 买入信号=买入, 评分=63
+2026-07-08 21:52:31 | INFO     | src.core.pipeline | src\core\pipeline.py:559 | 自由现金流ETF易方达(159222) 开始多维度情报搜索...
+2026-07-08 21:52:31 | INFO     | src.search_service | src\search_service.py:4059 | 开始多维度情报搜索: 自由现金流ETF易方达(159222), 时间范围: 近3天 (profile=short, NEWS_MAX_AGE_DAYS=3), 目标条数=3, provider请求条数=6
+2026-07-08 21:52:31 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 最新消息: 使用 SearXNG，请求窗口: 近3天
+2026-07-08 21:52:32 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.mdosch.de 搜索失败: Too Many Requests
+2026-07-08 21:52:34 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.bladerunn.in 搜索失败: Too Many Requests
+2026-07-08 21:52:36 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searxng.website 搜索失败: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access this resource.</p>
+<hr>
+<address>Ap；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问
+2026-07-08 21:52:36 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 最新消息: 搜索失败 - https://search.mdosch.de: Too Many Requests；https://search.bladerunn.in: Too Many Requests；https://searxng.website: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access this resource.</p>
+<hr>
+<address>Ap；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问
+2026-07-08 21:52:36 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 机构分析: 使用 SearXNG，请求窗口: 近180天
+2026-07-08 21:52:41 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.bladerunn.in 搜索失败: 请求超时
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:00<00:00,  5.80it/s] 40%|████      | 2/5 [00:00<00:00,  6.02it/s] 60%|██████    | 3/5 [00:00<00:00,  6.09it/s] 80%|████████  | 4/5 [00:00<00:00,  6.40it/s]100%|██████████| 5/5 [00:00<00:00,  6.59it/s]                                               0%|          | 0/4 [00:00<?, ?it/s]2026-07-08 21:52:43 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searxng.website 搜索失败: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access this resource.</p>
+<hr>
+<address>Ap；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问
+ 25%|██▌       | 1/4 [00:00<00:01,  2.26it/s] 50%|█████     | 2/4 [00:00<00:00,  3.24it/s] 75%|███████▌  | 3/4 [00:00<00:00,  4.21it/s]100%|██████████| 4/4 [00:00<00:00,  5.13it/s]                                             2026-07-08 21:52:48 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.ononoki.org 搜索失败: <!doctype html><html lang="en"><head><title>Making sure you&#39;re not a bot!</title><link rel="stylesheet" href="/.within.website/x/xess/xess.min.css?cachebuster=1.25.0"><meta name="viewport" content；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问
+2026-07-08 21:52:48 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 机构分析: 搜索失败 - https://search.bladerunn.in: 请求超时；https://searxng.website: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access this resource.</p>
+<hr>
+<address>Ap；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问；https://searx.ononoki.org: <!doctype html><html lang="en"><head><title>Making sure you&#39;re not a bot!</title><link rel="stylesheet" href="/.within.website/x/xess/xess.min.css?cachebuster=1.25.0"><meta name="viewport" content；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问
+2026-07-08 21:52:49 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 风险排查: 使用 SearXNG，请求窗口: 近3天
+2026-07-08 21:52:54 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searxng.website 搜索失败: 请求超时
+2026-07-08 21:52:58 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.ononoki.org 搜索失败: <!doctype html><html lang="en"><head><title>Making sure you&#39;re not a bot!</title><link rel="stylesheet" href="/.within.website/x/xess/xess.min.css?cachebuster=1.25.0"><meta name="viewport" content；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问
+2026-07-08 21:52:59 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://etsi.me 搜索失败: Too Many Requests
+2026-07-08 21:52:59 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 风险排查: 搜索失败 - https://searxng.website: 请求超时；https://searx.ononoki.org: <!doctype html><html lang="en"><head><title>Making sure you&#39;re not a bot!</title><link rel="stylesheet" href="/.within.website/x/xess/xess.min.css?cachebuster=1.25.0"><meta name="viewport" content；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问；https://etsi.me: Too Many Requests
+2026-07-08 21:53:00 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 公司公告: 使用 SearXNG，请求窗口: 近3天
+2026-07-08 21:53:01 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://searx.ononoki.org 搜索失败: <!doctype html><html lang="en"><head><title>Making sure you&#39;re not a bot!</title><link rel="stylesheet" href="/.within.website/x/xess/xess.min.css?cachebuster=1.25.0"><meta name="viewport" content；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问
+2026-07-08 21:53:02 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://etsi.me 搜索失败: Too Many Requests
+2026-07-08 21:53:03 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://failsearx.culturanerd.it 搜索失败: Too Many Requests
+2026-07-08 21:53:03 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 公司公告: 搜索失败 - https://searx.ononoki.org: <!doctype html><html lang="en"><head><title>Making sure you&#39;re not a bot!</title><link rel="stylesheet" href="/.within.website/x/xess/xess.min.css?cachebuster=1.25.0"><meta name="viewport" content；SearXNG 实例可能未启用 JSON 输出（请检查 settings.yml），或实例/代理拒绝了本次访问；https://etsi.me: Too Many Requests；https://failsearx.culturanerd.it: Too Many Requests
+2026-07-08 21:53:04 | INFO     | src.search_service | src\search_service.py:4094 | [情报搜索] 业绩预期: 使用 SearXNG，请求窗口: 近180天
+2026-07-08 21:53:05 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://etsi.me 搜索失败: Too Many Requests
+2026-07-08 21:53:10 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://failsearx.culturanerd.it 搜索失败: 请求超时
+2026-07-08 21:53:11 | WARNING  | src.search_service | src\search_service.py:2084 | [SearXNG] 实例 https://search.einfachzocken.eu 搜索失败: Too Many Requests
+2026-07-08 21:53:11 | WARNING  | src.search_service | src\search_service.py:4161 | [情报搜索] 业绩预期: 搜索失败 - https://etsi.me: Too Many Requests；https://failsearx.culturanerd.it: 请求超时；https://search.einfachzocken.eu: Too Many Requests
+2026-07-08 21:53:12 | INFO     | src.core.pipeline | src\core\pipeline.py:575 | 自由现金流ETF易方达(159222) 情报搜索完成: 共 0 条结果
+2026-07-08 21:53:14 | INFO     | src.analyzer | src\analyzer.py:3519 | ========== AI 分析 自由现金流ETF易方达(159222) ==========
+2026-07-08 21:53:14 | INFO     | src.analyzer | src\analyzer.py:3520 | [LLM配置] 模型: deepseek/deepseek-v4-flash
+2026-07-08 21:53:14 | INFO     | src.analyzer | src\analyzer.py:3521 | [LLM配置] Prompt 长度: 3967 字符
+2026-07-08 21:53:14 | INFO     | src.analyzer | src\analyzer.py:3522 | [LLM配置] 是否包含新闻: 是
+2026-07-08 21:53:14 | INFO     | src.analyzer | src\analyzer.py:3529 | [LLM Prompt 预览]
+# 决策仪表盘分析请求
+
+## 📊 股票基础信息
+| 项目 | 数据 |
+|------|------|
+| 股票代码 | **159222** |
+| 股票名称 | **自由现金流ETF易方达** |
+| 分析日期 | 2026-07-08 |
+
+---
+
+## 市场阶段上下文
+- 当前市场阶段：盘后
+- 市场：cn
+- 市场本地时间：2026-07-08T21:45:47.013881+08:00
+- 最新可复用完整日线日期：2026-07-08
+- 阶段约束：常规交易时段已结束，可以保留完整交易日复盘语义。
+
+## 分析上下文包摘要
+- 标的：159222（自由现金流ETF易方达）；市场=cn，pack_version=1.0
+- 数据块状态：
+  - 行情: available；source=akshare_em
+  - 日线: available；source=storage.get_analysis_context
+  - 技术: partial；告警=intraday_realtime_overlay
+  - 筹码: missing；missing_reason=chip...
+2026-07-08 21:53:14 | INFO     | src.analyzer | src\analyzer.py:3539 | [LLM调用] 开始调用 deepseek/deepseek-v4-flash...
+2026-07-08 21:53:43 | INFO     | src.analyzer | src\analyzer.py:3574 | [LLM返回] deepseek/deepseek-v4-flash 响应成功, 耗时 29.90s, 响应长度 4629 字符
+2026-07-08 21:53:43 | INFO     | src.analyzer | src\analyzer.py:3581 | [LLM返回 预览]
+{
+    "stock_name": "自由现金流ETF易方达",
+    "sentiment_score": 63,
+    "trend_prediction": "看多",
+    "operation_advice": "买入",
+    "decision_type": "buy",
+    "action": "buy",
+    "guardrail_reason": "",
+    "confidence_level": "中",
+    "dashboard": {
+        "core_conclusion": {
+            "one_sentenc...
+2026-07-08 21:53:44 | INFO     | src.analyzer | src\analyzer.py:3638 | [LLM解析] 自由现金流ETF易方达(159222) 分析完成: 看多, 评分 63
+2026-07-08 21:53:44 | INFO     | src.analyzer | src\analyzer.py:1484 | [decision_stability] Downgraded buy because capital flow is unavailable: not_supported
+2026-07-08 21:53:44 | INFO     | src.core.pipeline | src\core\pipeline.py:2821 | [159222] 分析完成: 持有观察, 评分 59
+2026-07-08 21:53:44 | INFO     | src.core.pipeline | src\core\pipeline.py:3004 | ===== 分析完成 =====
+2026-07-08 21:53:44 | INFO     | src.core.pipeline | src\core\pipeline.py:3005 | 成功: 2, 失败: 0, 耗时: 476.93 秒
+2026-07-08 21:53:44 | INFO     | src.notification | src\notification.py:2716 | 日报已保存到: G:\daily_stock_analysis\reports\report_20260708.md
+2026-07-08 21:53:44 | INFO     | src.core.pipeline | src\core\pipeline.py:3130 | 决策仪表盘日报已保存: G:\daily_stock_analysis\reports\report_20260708.md
+2026-07-08 21:53:44 | INFO     | src.core.pipeline | src\core\pipeline.py:3152 | 生成决策仪表盘日报...
+2026-07-08 21:53:44 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:126 | Discord Webhook 分批发送：共 11 批
+2026-07-08 21:53:45 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:53:45 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 1/11 批发送成功
+2026-07-08 21:53:51 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:53:51 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 2/11 批发送成功
+2026-07-08 21:53:53 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:53:53 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 3/11 批发送成功
+2026-07-08 21:54:00 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:00 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 4/11 批发送成功
+2026-07-08 21:54:01 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:01 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 5/11 批发送成功
+2026-07-08 21:54:03 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:03 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 6/11 批发送成功
+2026-07-08 21:54:05 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:05 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 7/11 批发送成功
+2026-07-08 21:54:07 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:07 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 8/11 批发送成功
+2026-07-08 21:54:12 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:12 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 9/11 批发送成功
+2026-07-08 21:54:14 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:14 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 10/11 批发送成功
+2026-07-08 21:54:15 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:236 | Discord Webhook 消息发送成功
+2026-07-08 21:54:15 | INFO     | src.notification_sender.discord_sender | src\notification_sender\discord_sender.py:132 | Discord Webhook 第 11/11 批发送成功
+2026-07-08 21:54:15 | INFO     | src.core.pipeline | src\core\pipeline.py:3597 | 决策仪表盘推送成功
+2026-07-08 21:54:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:186 | 检测到过期的 market_review.lock，尝试清理后重试。
+[safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:54:15 | WARNING  | src.core.market_review_lock | src\core\market_review_lock.py:190 | 清理过期 market_review.lock 失败: [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target": "G:\\daily_stock_analysis\\data\\market_review.lock", "reason": "windows-sandbox-recycle-bin-unavailable"}
+2026-07-08 21:54:15 | WARNING  | __main__ | main.py:485 | 大盘复盘正在执行中，跳过本次大盘复盘
+2026-07-08 21:54:15 | INFO     | __main__ | main.py:918 | 
+===== 分析结果摘要 =====
+2026-07-08 21:54:15 | INFO     | __main__ | main.py:921 | ⚪ 自由现金流ETF易方达(159222): 持有观察 | 评分 59 | 看多
+2026-07-08 21:54:15 | INFO     | __main__ | main.py:921 | ⚪ 红利低波ETF易方达(563020): 观望 | 评分 54 | 震荡
+2026-07-08 21:54:15 | INFO     | __main__ | main.py:926 | 
+任务执行完成
+2026-07-08 21:54:15 | INFO     | __main__ | main.py:975 | 开始自动回测...
+2026-07-08 21:54:15 | INFO     | __main__ | main.py:983 | 自动回测完成: processed=0 saved=0 completed=0 insufficient=0 errors=0
+2026-07-08 21:54:15 | INFO     | __main__ | main.py:1514 | 
+程序执行完成

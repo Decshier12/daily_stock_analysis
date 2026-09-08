@@ -1,0 +1,83 @@
+11:15:40.664342 exec-cmd.c:266          trace: resolved executable dir: C:/Users/Administrator/.workbuddy/vendor/PortableGit/mingw64/bin
+11:15:40.676633 git.c:502               trace: built-in: git push origin main_js
+11:15:40.678635 run-command.c:673       trace: run_command: GIT_DIR=.git git remote-https origin https://github.com/Decshier12/daily_stock_analysis.git
+11:15:40.678635 run-command.c:934       trace: start_command: git remote-https origin https://github.com/Decshier12/daily_stock_analysis.git
+11:15:41.020001 exec-cmd.c:266          trace: resolved executable dir: C:/Users/Administrator/.workbuddy/vendor/PortableGit/mingw64/libexec/git-core
+11:15:41.028919 git.c:810               trace: exec: git-remote-https origin https://github.com/Decshier12/daily_stock_analysis.git
+11:15:41.028919 run-command.c:673       trace: run_command: git-remote-https origin https://github.com/Decshier12/daily_stock_analysis.git
+11:15:41.028919 run-command.c:934       trace: start_command: git-remote-https origin https://github.com/Decshier12/daily_stock_analysis.git
+11:15:41.371916 exec-cmd.c:266          trace: resolved executable dir: C:/Users/Administrator/.workbuddy/vendor/PortableGit/mingw64/libexec/git-core
+11:15:41.393265 http.c:968              == Info: Could not find host github.com in the .netrc file; using defaults
+11:15:41.393265 http.c:968              == Info:   Trying 127.0.0.1:10809...
+11:15:41.393265 http.c:968              == Info: CONNECT: no ALPN negotiated
+11:15:41.393265 http.c:968              == Info: allocate connect buffer
+11:15:41.398148 http.c:968              == Info: Establish HTTP proxy tunnel to github.com:443
+11:15:41.398148 http.c:915              => Send header, 0000000121 bytes (0x00000079)
+11:15:41.398148 http.c:927              => Send header: CONNECT github.com:443 HTTP/1.1
+11:15:41.398148 http.c:927              => Send header: Host: github.com:443
+11:15:41.398148 http.c:927              => Send header: User-Agent: git/2.54.0.windows.1
+11:15:41.398148 http.c:927              => Send header: Proxy-Connection: Keep-Alive
+11:15:41.398148 http.c:927              => Send header:
+11:15:41.398148 http.c:915              <= Recv header, 0000000037 bytes (0x00000025)
+11:15:41.398148 http.c:927              <= Recv header: HTTP/1.1 200 Connection established
+11:15:41.398148 http.c:915              <= Recv header, 0000000002 bytes (0x00000002)
+11:15:41.398148 http.c:927              <= Recv header:
+11:15:41.398148 http.c:968              == Info: CONNECT phase completed
+11:15:41.398148 http.c:968              == Info: CONNECT tunnel established, response 200
+11:15:41.398148 http.c:968              == Info: schannel: disabled automatic use of client certificate
+11:15:41.399692 http.c:968              == Info: ALPN: curl offers http/1.1
+11:15:41.682872 http.c:968              == Info: ALPN: server accepted http/1.1
+11:15:41.682872 http.c:968              == Info: Established connection to 127.0.0.1 (127.0.0.1 port 10809) from 127.0.0.1 port 1527 
+11:15:41.682872 http.c:968              == Info: using HTTP/1.x
+11:15:41.682872 http.c:915              => Send header, 0000000213 bytes (0x000000d5)
+11:15:41.682872 http.c:927              => Send header: GET /Decshier12/daily_stock_analysis.git/info/refs?service=git-receive-pack HTTP/1.1
+11:15:41.682872 http.c:927              => Send header: Host: github.com
+11:15:41.682872 http.c:927              => Send header: User-Agent: git/2.54.0.windows.1
+11:15:41.682872 http.c:927              => Send header: Accept: */*
+11:15:41.682872 http.c:927              => Send header: Accept-Encoding: deflate, gzip, br, zstd
+11:15:41.682872 http.c:927              => Send header: Pragma: no-cache
+11:15:41.682872 http.c:927              => Send header:
+11:15:41.682872 http.c:968              == Info: Request completely sent off
+11:15:41.771973 http.c:968              == Info: schannel: remote party requests renegotiation
+11:15:41.771973 http.c:968              == Info: schannel: renegotiating SSL/TLS connection
+11:15:41.771973 http.c:968              == Info: schannel: SSL/TLS connection renegotiated
+11:15:41.771973 http.c:968              == Info: schannel: remote party requests renegotiation
+11:15:41.771973 http.c:968              == Info: schannel: renegotiating SSL/TLS connection
+11:15:41.772476 http.c:968              == Info: schannel: SSL/TLS connection renegotiated
+11:15:41.948172 http.c:915              <= Recv header, 0000000027 bytes (0x0000001b)
+11:15:41.948172 http.c:927              <= Recv header: HTTP/1.1 401 Unauthorized
+11:15:41.948172 http.c:915              <= Recv header, 0000000026 bytes (0x0000001a)
+11:15:41.948172 http.c:927              <= Recv header: Server: GitHub-Babel/3.0
+11:15:41.948172 http.c:915              <= Recv header, 0000000054 bytes (0x00000036)
+11:15:41.948172 http.c:927              <= Recv header: Content-Security-Policy: default-src 'none'; sandbox
+11:15:41.948172 http.c:915              <= Recv header, 0000000041 bytes (0x00000029)
+11:15:41.948172 http.c:927              <= Recv header: Content-Type: text/plain; charset=UTF-8
+11:15:41.948172 http.c:915              <= Recv header, 0000000040 bytes (0x00000028)
+11:15:41.948172 http.c:927              <= Recv header: www-authenticate: Basic realm="GitHub"
+11:15:41.948172 http.c:915              <= Recv header, 0000000020 bytes (0x00000014)
+11:15:41.948172 http.c:927              <= Recv header: Content-Length: 26
+11:15:41.948172 http.c:915              <= Recv header, 0000000037 bytes (0x00000025)
+11:15:41.948172 http.c:927              <= Recv header: Date: Sun, 12 Jul 2026 03:15:41 GMT
+11:15:41.948172 http.c:915              <= Recv header, 0000000023 bytes (0x00000017)
+11:15:41.948172 http.c:927              <= Recv header: X-Frame-Options: DENY
+11:15:41.948172 http.c:915              <= Recv header, 0000000073 bytes (0x00000049)
+11:15:41.948172 http.c:927              <= Recv header: Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+11:15:41.948172 http.c:915              <= Recv header, 0000000059 bytes (0x0000003b)
+11:15:41.948172 http.c:927              <= Recv header: X-GitHub-Request-Id: 108E:1CDF70:110DDA5:15BA452:6A5306DD
+11:15:41.948172 http.c:915              <= Recv header, 0000000002 bytes (0x00000002)
+11:15:41.948172 http.c:927              <= Recv header:
+11:15:41.948172 http.c:968              == Info: Connection #0 to host 127.0.0.1:10809 left intact
+11:15:41.948172 run-command.c:673       trace: run_command: 'git credential-helper-selector get'
+11:15:41.948796 run-command.c:934       trace: start_command: C:/Users/Administrator/.workbuddy/vendor/PortableGit/usr/bin/sh.exe -c 'git credential-helper-selector get' 'git credential-helper-selector get'
+11:15:42.323264 exec-cmd.c:266          trace: resolved executable dir: C:/Users/Administrator/.workbuddy/vendor/PortableGit/mingw64/libexec/git-core
+11:15:42.337142 git.c:810               trace: exec: git-credential-helper-selector get
+11:15:42.337142 run-command.c:673       trace: run_command: git-credential-helper-selector get
+11:15:42.337142 run-command.c:934       trace: start_command: git-credential-helper-selector get
+11:15:42.691036 exec-cmd.c:266          trace: resolved executable dir: C:/Users/Administrator/.workbuddy/vendor/PortableGit/mingw64/libexec/git-core
+11:15:42.698037 git.c:502               trace: built-in: git config credential.helperselector.selected
+11:15:42.740457 exec-cmd.c:266          trace: resolved executable dir: C:/Users/Administrator/.workbuddy/vendor/PortableGit/mingw64/libexec/git-core
+11:15:42.747538 git.c:502               trace: built-in: git config --show-origin credential.helper
+11:15:42.789129 exec-cmd.c:266          trace: resolved executable dir: C:/Users/Administrator/.workbuddy/vendor/PortableGit/mingw64/libexec/git-core
+11:15:42.796032 git.c:502               trace: built-in: git config --system -e
+11:15:42.797124 run-command.c:673       trace: run_command: echo C:/Users/Administrator/.workbuddy/vendor/PortableGit/etc/gitconfig
+11:15:42.797124 run-command.c:934       trace: start_command: echo C:/Users/Administrator/.workbuddy/vendor/PortableGit/etc/gitconfig
